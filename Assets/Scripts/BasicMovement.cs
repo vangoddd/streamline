@@ -21,6 +21,7 @@ public class BasicMovement : MonoBehaviour
     void Update()
     {
         HandleInput();
+        animator.SetBool("isJumping", jump);
 
         Move();
         HandleActions();
@@ -42,6 +43,8 @@ public class BasicMovement : MonoBehaviour
     void Move() { 
         float x = Input.GetAxisRaw("Horizontal"); 
         float moveBy = x * speed; 
+        animator.SetFloat("speed", Mathf.Abs(moveBy));
+        
         
         if (moveBy > 0 && !facingRight)
 			{
