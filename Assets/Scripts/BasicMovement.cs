@@ -11,6 +11,11 @@ public class BasicMovement : MonoBehaviour
     Rigidbody2D rb;
     public float speed;
     public Animator animator;
+    public Transform attackCheck;
+    public float attackRange;
+    public int attackDamage = 20;
+
+    public LayerMask enemyMask;
 
     private bool attack = false;
     private bool jump = false;
@@ -39,9 +44,16 @@ public class BasicMovement : MonoBehaviour
 
         //handling attack
         if(Input.GetKeyDown(KeyCode.F)){
-            Debug.Log("attacking");
-            attack = true;
+            //Debug.Log("attacking");
             animator.SetTrigger("Attack");
+            attack = true;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRange, enemyMask);
+
+            foreach(Collider2D e in hitEnemies){
+                e.GetComponent<EnemyScript>().hurt(attackDamage);
+                Debug.Log("enemy hit");
+            }
+            
         }
         //handling jump
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -59,6 +71,10 @@ public class BasicMovement : MonoBehaviour
 
     void Reset(){
         attack = false;
+    }
+
+    void OnDrawGizmosSelected(){
+        Gizmos.DrawWireSphere(attackCheck.position, attackRange);
     }
 }
 
