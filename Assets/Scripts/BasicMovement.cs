@@ -50,6 +50,15 @@ public class BasicMovement : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRange, enemyMask);
 
             foreach(Collider2D e in hitEnemies){
+                //apply force
+                Rigidbody2D enemyRb = e.gameObject.GetComponent<Rigidbody2D>();
+                if(controller.isFacingRight()){
+                    enemyRb.AddForce(new Vector2(150f, 100f));
+                }else{
+                    enemyRb.AddForce(new Vector2(-150f, 100f));
+                }
+
+                //apply dmg
                 e.GetComponent<EnemyScript>().hurt(attackDamage);
                 Debug.Log("enemy hit");
             }

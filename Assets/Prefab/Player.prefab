@@ -187,7 +187,7 @@ MonoBehaviour:
   speed: 35
   animator: {fileID: 4440297906552464624}
   attackCheck: {fileID: 4440297907996099956}
-  attackRange: 0.4
+  attackRange: 0.61
   attackDamage: 20
   enemyMask:
     serializedVersion: 2
