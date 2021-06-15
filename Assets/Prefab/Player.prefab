@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpForce: 650
   m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.082
+  m_MovementSmoothing: 0.138
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4440297906552464637}
-  speed: 35
+  speed: 28
   animator: {fileID: 4440297906552464624}
   attackCheck: {fileID: 4440297907996099956}
   attackRange: 0.61
