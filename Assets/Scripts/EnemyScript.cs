@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    public GameObject hitFx;
+    public GameObject dieFx;
 
     private int health = 100;
     // Start is called before the first frame update
@@ -23,11 +25,14 @@ public class EnemyScript : MonoBehaviour
         Debug.Log("Health : " + this.health);
         if(health <= 0){
             die();
+        }else{
+            Instantiate(hitFx, transform.position, Quaternion.identity);
         }
     }
 
     private void die(){
         Debug.Log("Die");
+        Instantiate(dieFx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
