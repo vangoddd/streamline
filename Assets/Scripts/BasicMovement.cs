@@ -53,9 +53,9 @@ public class BasicMovement : MonoBehaviour
                 //apply force
                 Rigidbody2D enemyRb = e.gameObject.GetComponent<Rigidbody2D>();
                 if(controller.isFacingRight()){
-                    enemyRb.AddForce(new Vector2(150f, 100f));
+                    enemyRb.AddForce(new Vector2(350f, 100f));
                 }else{
-                    enemyRb.AddForce(new Vector2(-150f, 100f));
+                    enemyRb.AddForce(new Vector2(-350f, 100f));
                 }
 
                 //apply dmg
