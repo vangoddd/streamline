@@ -18,12 +18,15 @@ public class GroundAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private EnemyScript enemyScript;
+
     // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
+        enemyScript = GetComponent<EnemyScript>();
         //will be called when player is close enough
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -58,7 +61,7 @@ public class GroundAI : MonoBehaviour
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = dir * speed * Time.deltaTime;
 
-        rb.AddForce(force);
+        Move(force);
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -72,5 +75,13 @@ public class GroundAI : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
+    }
+
+    private void Move(Vector2 force){
+        if(enemyScript.isAggro() && enemyScript.isCanMove()){
+            rb.AddForce(force);
+        }else{
+            return;
+        }
     }
 }

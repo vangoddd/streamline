@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: StaticBG
+    uniqueID: 540644109
+    locked: 0
   - name: BG
     uniqueID: 3850548963
     locked: 0

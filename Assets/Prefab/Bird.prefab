@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4168763818886929775}
   - component: {fileID: 4168763818886929774}
   - component: {fileID: 4168763818886929773}
-  - component: {fileID: 4168763818886929772}
   - component: {fileID: 4168763818886929771}
+  - component: {fileID: 9162120901732963328}
   m_Layer: 8
   m_Name: Bird
   m_TagString: Untagged
@@ -172,21 +172,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.59
---- !u!114 &4168763818886929772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4168763818886929770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a9b2d5dd0fc1d040885fcf7f9500bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 200
-  nextWaypointDistance: 0.5
 --- !u!114 &4168763818886929771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,3 +186,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFx: {fileID: 8113027971453377695, guid: d0f09cecd68ebed42b15160142786393, type: 3}
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
+--- !u!114 &9162120901732963328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4168763818886929770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611daea6abc787843a80ecb682f938b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 200
+  nextWaypointDistance: 0.5
