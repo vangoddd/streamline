@@ -40,14 +40,15 @@ public class handleAttack : MonoBehaviour
 
             //play the correct attack animation
             if(combo == 0){
+                basicMovement.attacking = true;
                 animator.SetTrigger("Attack");
                 rb.velocity = new Vector2(0f, rb.velocity.y);
                 applyDamage(combo);
                 
             }else{
                 if(canCombo){
-                    if((Input.GetAxisRaw("Horizontal") >= 0 && !controller.isFacingRight()) || 
-                    (Input.GetAxisRaw("Horizontal") < 0 && controller.isFacingRight())){
+                    if((Input.GetAxisRaw("Horizontal") > 0.01f && !controller.isFacingRight()) || 
+                    (Input.GetAxisRaw("Horizontal") < -0.01f && controller.isFacingRight())){
                         controller.Flip();
                     }
                     animator.SetTrigger("Combo");
@@ -105,7 +106,16 @@ public class handleAttack : MonoBehaviour
         foreach(Collider2D e in hitEnemies){
             //apply dmg
             if(e != null){
-                e.GetComponent<EnemyScript>().hurt(attackDamage);
+                EnemyScript enemy = e.GetComponent<EnemyScript>();
+                Rigidbody2D enemyRb = e.GetComponent<Rigidbody2D>();
+                enemy.stun();
+                enemy.hurt(attackDamage);
+
+                if(controller.isFacingRight()){
+                    enemyRb.AddForce(new Vector2(80f, 50f));
+                }else{
+                    enemyRb.AddForce(new Vector2(-80f, 50f));
+                }
             }
         }
     }
@@ -120,6 +130,7 @@ public class handleAttack : MonoBehaviour
 
     public void resetCombo(){
         combo = 0;
+        basicMovement.attacking = false;
     }
 
     public void StopMovement(){

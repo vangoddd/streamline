@@ -16,6 +16,7 @@ public class BasicMovement : MonoBehaviour
 
     public bool canMove = true;
     public bool jump = false;
+    public bool attacking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class BasicMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed; 
 
         //handling jump
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && !attacking){
             jump = true;
             animator.SetBool("isJumping", true);
         }

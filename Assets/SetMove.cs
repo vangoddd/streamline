@@ -22,6 +22,7 @@ public class SetMove : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        enemyScript.setCanMove(true);
+       enemyScript.finishedAggro = true;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
