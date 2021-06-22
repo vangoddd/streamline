@@ -38,11 +38,17 @@ public class HandleDash : MonoBehaviour
     }
 
     void Dash(){
-        basicMovement.StopMovement(true);
-        if(controller.isFacingRight()){
+        basicMovement.StopMovementBasic(true);
+        if(basicMovement.horizontalMove >= 0.01f){
             rb.velocity = (new Vector2(25f, rb.velocity.y));
-        }else{
+        }else if(basicMovement.horizontalMove >= 0.01f){
             rb.velocity = (new Vector2(-25f, rb.velocity.y));
+        }else{
+            if(controller.isFacingRight()){
+                rb.velocity = (new Vector2(25f, rb.velocity.y));
+            }else{
+                rb.velocity = (new Vector2(-25f, rb.velocity.y));
+            }
         }
     }
 }

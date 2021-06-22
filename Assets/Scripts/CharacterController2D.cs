@@ -19,6 +19,18 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+	private Vector2 slopeNormalPerp;
+	private float slopeDownAngle;
+	private float lastSlopeAngle;
+	private float slopeCheckDistance = 0.5f;
+	private bool isOnSlope = false;
+	private float slopeSideAngle;
+	private float maxSlopeAngle = 45f;
+	private bool canWalkOnSlope;
+
+	public PhysicsMaterial2D fullFriction; 
+	public PhysicsMaterial2D noFriction; 
+
 	[Header("Events")]
 	[Space]
 
@@ -55,7 +67,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Grounded = true;
 				if (!wasGrounded){
-					Debug.Log(colliders[i]);
+					//Debug.Log(colliders[i]);
 					OnLandEvent.Invoke();
 				}
 			}
@@ -65,6 +77,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump)
 	{
+		SlopeCheck(move);
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
 		{
@@ -108,9 +121,24 @@ public class CharacterController2D : MonoBehaviour
 			}
 
 			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+			
+			if(m_Grounded && !isOnSlope){
+				//Debug.Log("not moving ong slop");
+				Vector3 targetVelocity = new Vector2(move * 10f, 0f);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}else if(m_Grounded && isOnSlope && canWalkOnSlope){
+				//Debug.Log("moving ong slop");
+				Vector3 targetVelocity = new Vector2(-move * 10f * slopeNormalPerp.x, -move * slopeNormalPerp.y * 10f);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}else{
+				Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}
+
+			//Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+
 			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
@@ -145,6 +173,84 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+	private void SlopeCheck(float move)
+    {
+		//Debug.Log(isOnSlope);
+        Vector2 checkPos = transform.position - (Vector3)(new Vector2(0.0f, 0.3f));
+
+        SlopeCheckVertical(checkPos, move);
+		SlopeCheckHorizontal(checkPos);
+    }
+
+	private void SlopeCheckVertical(Vector2 checkPos, float move)
+    {      
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, m_WhatIsGround);
+
+        if (hit)
+        {
+
+            slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;            
+
+            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+            if(slopeDownAngle != lastSlopeAngle)
+            {
+                isOnSlope = true;
+            }                       
+
+            lastSlopeAngle = slopeDownAngle;
+           
+            Debug.DrawRay(hit.point, slopeNormalPerp, Color.blue);
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+
+        }
+
+		if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
+        {
+            canWalkOnSlope = false;
+        }
+        else
+        {
+            canWalkOnSlope = true;
+        }
+
+        if (isOnSlope && canWalkOnSlope && move == 0.0f)
+        {
+            m_Rigidbody2D.sharedMaterial = fullFriction;
+        }
+        else
+        {
+            m_Rigidbody2D.sharedMaterial = noFriction;
+        }
+
+    }
+
+	 private void SlopeCheckHorizontal(Vector2 checkPos)
+    {
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, transform.right, slopeCheckDistance, m_WhatIsGround);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -transform.right, slopeCheckDistance, m_WhatIsGround);
+
+        if (slopeHitFront)
+        {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+
+        }
+        else if (slopeHitBack)
+        {
+            isOnSlope = true;
+
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+        }
+        else
+        {
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
+        }
+
+    }
 
 	public bool isFacingRight(){
 		return m_FacingRight;

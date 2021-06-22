@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4440297906552464636}
   - component: {fileID: 9036592379787132941}
   - component: {fileID: 5664372207267922900}
+  - component: {fileID: 6852213192249634906}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -254,6 +255,8 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 4440297908212961476}
   m_CeilingCheck: {fileID: 4440297906908269931}
   m_CrouchDisableCollider: {fileID: 0}
+  fullFriction: {fileID: 6200000, guid: dbc158811d38e1c43a57fa3372811e80, type: 2}
+  noFriction: {fileID: 6200000, guid: 7bde2c6e43c92cb4c91a97efd08afc85, type: 2}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -285,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4440297906552464637}
+  horizontalMove: 0
   speed: 28
   animator: {fileID: 4440297906552464624}
   enemyMask:
@@ -347,11 +351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dc0128be35caa4eb2b834c6c3ba886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroCheck: {fileID: 0}
-  aggroRange: 15
+  aggroCheck: {fileID: 6756295234569744091}
+  aggroRange: 4.5
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &5664372207267922900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +380,20 @@ MonoBehaviour:
   attackHitBox3: {fileID: 7343289730457985369}
   shootForce: 400
   projectilePrefab: {fileID: 2530782150264911711, guid: 5f10129270728e8458ca8f95927e6fb1, type: 3}
+  shootCooldown: 0.4
+--- !u!114 &6852213192249634906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440297906552464628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16fe8f0f979324795aabeddfd5e618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillCooldown: 3
 --- !u!1 &4440297906908269928
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class BasicMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    float horizontalMove = 0f;
+    public float horizontalMove = 0f;
 
     Rigidbody2D rb;
     public float speed;
@@ -51,7 +51,7 @@ public class BasicMovement : MonoBehaviour
     }
 
     public void onLanding(){
-        Debug.Log("Landing event called");
+        //Debug.Log("Landing event called");
         animator.SetBool("isJumping", false);
         jump = false;
     }
@@ -64,7 +64,7 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    public void StopMovement(bool vertical){
+    public void StopMovementBasic(bool vertical){
         if(vertical){
             rb.velocity = new Vector2(0f, 0f);
         }else{

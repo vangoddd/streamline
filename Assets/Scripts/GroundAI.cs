@@ -13,7 +13,6 @@ public class GroundAI : MonoBehaviour
 
     Path path;
     int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -51,11 +50,10 @@ public class GroundAI : MonoBehaviour
             return;
         }
 
+        //Debug.Log(path.vectorPath.Count + " " + currentWaypoint);
+
         if(currentWaypoint >= path.vectorPath.Count){
-            reachedEndOfPath = true;
-            return;
-        }else{
-            reachedEndOfPath = false;
+            currentWaypoint = path.vectorPath.Count-1;
         }
 
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -63,11 +61,12 @@ public class GroundAI : MonoBehaviour
 
         Move(force);
 
-        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
+        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if(dist < nextWaypointDistance){
             currentWaypoint++;
         }
+        
 
         if(force.x >= 0.01f){
             transform.localScale = new Vector3(-1f, 1f, 1f);

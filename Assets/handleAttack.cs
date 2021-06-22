@@ -94,7 +94,7 @@ public class handleAttack : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(enemyMask);
         filter.useLayerMask = true;
-        Collider2D[] hitEnemies = new Collider2D[9999];
+        List<Collider2D> hitEnemies = new List<Collider2D>();
         Collider2D check = null;
 
         switch(comboCount) 
@@ -123,13 +123,13 @@ public class handleAttack : MonoBehaviour
             if(e != null){
                 EnemyScript enemy = e.GetComponent<EnemyScript>();
                 Rigidbody2D enemyRb = e.GetComponent<Rigidbody2D>();
-                enemy.stun();
+                enemy.stun(1f);
                 enemy.hurt(attackDamage, false);
 
                 if(controller.isFacingRight()){
-                    enemyRb.AddForce(new Vector2(80f, 50f));
+                    enemyRb.AddForce(new Vector2(40f, 30f));
                 }else{
-                    enemyRb.AddForce(new Vector2(-80f, 50f));
+                    enemyRb.AddForce(new Vector2(-40f, 30f));
                 }
             }
         }

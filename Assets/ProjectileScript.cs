@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public int damage = 20;
+    public GameObject hitFx;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +18,15 @@ public class ProjectileScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        Debug.Log(col);
         if(col.gameObject.CompareTag("Player")){
             return;
         }
         if (col.gameObject.CompareTag("enemy")){
             EnemyScript e = col.gameObject.GetComponent<EnemyScript>();
+            e.stun(0.5f);
             e.hurt(damage, true);
+        }else{
+            Instantiate(hitFx, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }

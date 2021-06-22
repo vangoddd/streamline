@@ -86,12 +86,13 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    public void stun(){
+    public void stun(float duration){
 
         //play stunned animation
         
         stunned = true;
-        stunTimer = 1f;
+        stunTimer = duration;
+        rb.velocity = new Vector2(0f, 0f);
     }
     
 
