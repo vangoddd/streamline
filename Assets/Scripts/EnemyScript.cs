@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+
+    public enum EnemyType{
+        ground,
+        air
+    }
+
     public GameObject hitFx;
     public GameObject dieFx;
 
@@ -19,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     private bool stunned = false;
 
     public int health = 100;
+    public EnemyType enemyType;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +52,18 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    public void hurt(int amt){
-        this.health -= amt;
+    public void hurt(int amt, bool ranged){
+        if(!isAggroed){
+            aggro();
+        }
+        if(ranged && enemyType == EnemyType.ground){
+            this.health -= (int) ((float) amt * 0.5f);
+        }else if(!ranged && enemyType == EnemyType.air){
+            this.health -= (int) ((float) amt * 1.2f);
+        }
+        else{
+            this.health -= amt;
+        }
         Debug.Log("Health : " + this.health);
         if(health <= 0){
             die();

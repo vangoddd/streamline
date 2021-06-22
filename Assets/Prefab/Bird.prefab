@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 9162120901732963328}
   m_Layer: 8
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFx: {fileID: 8113027971453377695, guid: d0f09cecd68ebed42b15160142786393, type: 3}
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
+  finishedAggro: 0
+  health: 100
+  enemyType: 1
 --- !u!114 &9162120901732963328
 MonoBehaviour:
   m_ObjectHideFlags: 0

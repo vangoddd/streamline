@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7343289730457985369}
   m_Layer: 6
   m_Name: Attack3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 8521948147804143027}
   m_Layer: 6
   m_Name: Attack0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 5664372207267922900}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
     m_Bits: 256
   canMove: 1
   jump: 0
+  attacking: 0
 --- !u!61 &4440297906552464631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -373,6 +374,8 @@ MonoBehaviour:
   attackHitBox1: {fileID: 1762234275470583392}
   attackHitBox2: {fileID: 6731480182402951514}
   attackHitBox3: {fileID: 7343289730457985369}
+  shootForce: 400
+  projectilePrefab: {fileID: 2530782150264911711, guid: 5f10129270728e8458ca8f95927e6fb1, type: 3}
 --- !u!1 &4440297906908269928
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +387,7 @@ GameObject:
   - component: {fileID: 4440297906908269931}
   m_Layer: 0
   m_Name: ceiling check
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +417,7 @@ GameObject:
   - component: {fileID: 4440297907996099956}
   m_Layer: 6
   m_Name: Attack check
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -444,7 +447,7 @@ GameObject:
   - component: {fileID: 4440297908212961476}
   m_Layer: 0
   m_Name: ground check
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,7 +478,7 @@ GameObject:
   - component: {fileID: 1762234275470583392}
   m_Layer: 6
   m_Name: Attack1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +524,7 @@ GameObject:
   - component: {fileID: 6756295234569744091}
   m_Layer: 6
   m_Name: Aggro check
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,7 +555,7 @@ GameObject:
   - component: {fileID: 6731480182402951514}
   m_Layer: 6
   m_Name: Attack2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

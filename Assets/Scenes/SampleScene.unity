@@ -1429,6 +1429,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &672456547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4440297906552464628, guid: e2a88bef448991543a98988e283fdb97, type: 3}
+  m_PrefabInstance: {fileID: 4440297907254593813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &672456557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672456547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16fe8f0f979324795aabeddfd5e618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillCooldown: 3
 --- !u!1 &707987900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1480,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFx: {fileID: 8113027971453377695, guid: d0f09cecd68ebed42b15160142786393, type: 3}
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
+  finishedAggro: 0
   health: 250
+  enemyType: 0
 --- !u!212 &707987902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6039,14 +6059,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2488332021072462279, guid: e2a88bef448991543a98988e283fdb97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4145715943042796233, guid: e2a88bef448991543a98988e283fdb97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4440297906552464626, guid: e2a88bef448991543a98988e283fdb97, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6094,14 +6106,6 @@ PrefabInstance:
     - target: {fileID: 4440297906552464628, guid: e2a88bef448991543a98988e283fdb97, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178134224033472108, guid: e2a88bef448991543a98988e283fdb97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214823016171944128, guid: e2a88bef448991543a98988e283fdb97, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9036592379787132941, guid: e2a88bef448991543a98988e283fdb97, type: 3}
       propertyPath: aggroCheck

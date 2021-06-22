@@ -23,6 +23,15 @@ public class handleAttack : MonoBehaviour
     public Collider2D attackHitBox1;
     public Collider2D attackHitBox2;
     public Collider2D attackHitBox3;
+
+    public float shootForce = 200f;
+    public GameObject projectilePrefab;
+
+    private float shootTimer = 0f;
+    private bool shooting = false;
+    public float shootCooldown = 0.4f;
+
+    private Camera cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +39,19 @@ public class handleAttack : MonoBehaviour
         controller = GetComponent<CharacterController2D>(); 
         basicMovement = GetComponent<BasicMovement>();
         rb = GetComponent<Rigidbody2D>(); 
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(shootTimer > 0){
+            shootTimer -= Time.deltaTime;
+        }else{
+            shooting = false;
+        }
+        
         if(Input.GetKeyDown(KeyCode.F) && !basicMovement.jump){
-            
 
             //play the correct attack animation
             if(combo == 0){
@@ -60,19 +75,19 @@ public class handleAttack : MonoBehaviour
                     applyDamage(combo);
                 }
             }
-            
             if(combo > 4){
                 combo = 0;
             }
-            
+        }
+
+        if(Input.GetMouseButtonDown(0) && !shooting && !basicMovement.attacking){
+            shoot();
         }
     }
 
     void applyDamage(int comboCount){
         basicMovement.canMove = false;
-        this.combo++;
-
-        
+        this.combo++; 
     }
 
     public void animationHit(int comboCount){
@@ -109,7 +124,7 @@ public class handleAttack : MonoBehaviour
                 EnemyScript enemy = e.GetComponent<EnemyScript>();
                 Rigidbody2D enemyRb = e.GetComponent<Rigidbody2D>();
                 enemy.stun();
-                enemy.hurt(attackDamage);
+                enemy.hurt(attackDamage, false);
 
                 if(controller.isFacingRight()){
                     enemyRb.AddForce(new Vector2(80f, 50f));
@@ -118,6 +133,25 @@ public class handleAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    //Handle shoot
+    private void shoot(){
+        shooting = true;
+        shootTimer = shootCooldown;
+
+        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = (mousePos - rb.position).normalized;
+
+        if(dir.x >= 0.01 && !controller.isFacingRight()){
+            controller.Flip();
+        }else if(dir.x <= -0.01 && controller.isFacingRight()){
+            controller.Flip();
+        }
+
+        GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().AddForce(dir * shootForce);
+
     }
 
     public void setCanCombo(int canCombo){
