@@ -46,6 +46,10 @@ public class handleAttack : MonoBehaviour
                 
             }else{
                 if(canCombo){
+                    if((Input.GetAxisRaw("Horizontal") >= 0 && !controller.isFacingRight()) || 
+                    (Input.GetAxisRaw("Horizontal") < 0 && controller.isFacingRight())){
+                        controller.Flip();
+                    }
                     animator.SetTrigger("Combo");
                     if(controller.isFacingRight()){
                         rb.AddForce(new Vector2(120f, 170f));
