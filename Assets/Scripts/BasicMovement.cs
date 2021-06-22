@@ -33,7 +33,7 @@ public class BasicMovement : MonoBehaviour
             controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
             animator.SetFloat("speed", Mathf.Abs(horizontalMove));
         }else{
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            //rb.velocity = new Vector2(0f, rb.velocity.y);
         }
     }
 

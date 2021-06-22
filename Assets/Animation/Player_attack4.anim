@@ -33,7 +33,7 @@ AnimationClip:
       value: {fileID: -1231081091344714138, guid: f1f2f1fd24c45c64d979ae6a6b985719, type: 3}
     - time: 0.5
       value: {fileID: -5891161301868413295, guid: f1f2f1fd24c45c64d979ae6a6b985719, type: 3}
-    - time: 0.9166667
+    - time: 1
       value: {fileID: -5891161301868413295, guid: f1f2f1fd24c45c64d979ae6a6b985719, type: 3}
     attribute: m_Sprite
     path: 
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.0833334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -94,7 +94,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9166667
+  - time: 0.16666667
+    functionName: animationHit
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 3
+    messageOptions: 0
+  - time: 0.5
+    functionName: StopMovement
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
     functionName: resetCombo
     data: 
     objectReferenceParameter: {fileID: 0}

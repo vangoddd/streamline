@@ -6,6 +6,7 @@ public class handleAttack : MonoBehaviour
 {
     private Animator animator;
     private CharacterController2D controller;
+    private Rigidbody2D rb;
     public int attackDamage = 20;
 
     public Transform attackCheck;
@@ -28,6 +29,7 @@ public class handleAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController2D>(); 
         basicMovement = GetComponent<BasicMovement>();
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     // Update is called once per frame
@@ -39,11 +41,17 @@ public class handleAttack : MonoBehaviour
             //play the correct attack animation
             if(combo == 0){
                 animator.SetTrigger("Attack");
+                rb.velocity = new Vector2(0f, rb.velocity.y);
                 applyDamage(combo);
                 
             }else{
                 if(canCombo){
                     animator.SetTrigger("Combo");
+                    if(controller.isFacingRight()){
+                        rb.AddForce(new Vector2(120f, 170f));
+                    }else{
+                        rb.AddForce(new Vector2(-120f, 170f));
+                    }
                     applyDamage(combo);
                 }
             }
@@ -59,6 +67,10 @@ public class handleAttack : MonoBehaviour
         basicMovement.canMove = false;
         this.combo++;
 
+        
+    }
+
+    public void animationHit(int comboCount){
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(enemyMask);
         filter.useLayerMask = true;
@@ -75,7 +87,7 @@ public class handleAttack : MonoBehaviour
             break;
         case 2:
             check = attackHitBox2;
-        break;
+            break;
         case 3:
             check = attackHitBox3;
             break;
@@ -86,28 +98,13 @@ public class handleAttack : MonoBehaviour
 
         Physics2D.OverlapCollider(check, filter, hitEnemies); 
 
-        Debug.Log(hitEnemies);
-
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCheck.position, attackRange, enemyMask);
         foreach(Collider2D e in hitEnemies){
-            //Should stun the enemy
-            // Rigidbody2D enemyRb = e.gameObject.GetComponent<Rigidbody2D>();
-            // if(controller.isFacingRight()){
-            //     enemyRb.AddForce(new Vector2(350f, 100f));
-            // }else{
-            //     enemyRb.AddForce(new Vector2(-350f, 100f));
-            // }
-
             //apply dmg
             if(e != null){
                 e.GetComponent<EnemyScript>().hurt(attackDamage);
             }
         }
     }
-
-    // void OnDrawGizmosSelected(){
-    //     Gizmos.DrawWireSphere(attackCheck.position, attackRange);
-    // }
 
     public void setCanCombo(int canCombo){
         if(canCombo == 1){
@@ -119,5 +116,9 @@ public class handleAttack : MonoBehaviour
 
     public void resetCombo(){
         combo = 0;
+    }
+
+    public void StopMovement(){
+        rb.velocity = new Vector2(0f, rb.velocity.y);
     }
 }
