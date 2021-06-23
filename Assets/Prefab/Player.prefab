@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b16fe8f0f979324795aabeddfd5e618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashFx: {fileID: 1051856852692343548, guid: ac885d9d1f570784c8a5853ff6f83a34, type: 3}
   skillCooldown: 3
 --- !u!1 &4440297906908269928
 GameObject:
