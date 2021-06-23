@@ -380,7 +380,7 @@ MonoBehaviour:
   attackHitBox3: {fileID: 7343289730457985369}
   shootForce: 400
   projectilePrefab: {fileID: 2530782150264911711, guid: 5f10129270728e8458ca8f95927e6fb1, type: 3}
-  shootCooldown: 0.4
+  shootCooldown: 1.2
 --- !u!114 &6852213192249634906
 MonoBehaviour:
   m_ObjectHideFlags: 0

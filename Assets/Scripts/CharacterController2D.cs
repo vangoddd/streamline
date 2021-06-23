@@ -28,6 +28,8 @@ public class CharacterController2D : MonoBehaviour
 	private float maxSlopeAngle = 45f;
 	private bool canWalkOnSlope;
 
+	private float m_move;
+
 	public PhysicsMaterial2D fullFriction; 
 	public PhysicsMaterial2D noFriction; 
 
@@ -55,6 +57,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private void Update()
 	{
+		SlopeCheck(m_move);
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -77,7 +80,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump)
 	{
-		SlopeCheck(move);
+		m_move = move;
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
 		{

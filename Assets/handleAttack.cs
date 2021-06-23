@@ -31,6 +31,8 @@ public class handleAttack : MonoBehaviour
     private bool shooting = false;
     public float shootCooldown = 0.4f;
 
+    private Vector2 shootDir;
+
     private Camera cam;
     // Start is called before the first frame update
     void Start()
@@ -141,17 +143,25 @@ public class handleAttack : MonoBehaviour
         shootTimer = shootCooldown;
 
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = (mousePos - rb.position).normalized;
+        shootDir = (mousePos - rb.position).normalized;
 
-        if(dir.x >= 0.01 && !controller.isFacingRight()){
+        if(shootDir.x >= 0.01 && !controller.isFacingRight()){
             controller.Flip();
-        }else if(dir.x <= -0.01 && controller.isFacingRight()){
+        }else if(shootDir.x <= -0.01 && controller.isFacingRight()){
             controller.Flip();
         }
 
-        GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
-        projectile.GetComponent<Rigidbody2D>().AddForce(dir * shootForce);
+        if(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Player_jump"){
+            launchProjectile();
+        }else{
+            animator.SetTrigger("Shoot");
+        }
 
+    }
+
+    public void launchProjectile(){
+        GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().AddForce(shootDir * shootForce);
     }
 
     public void setCanCombo(int canCombo){
