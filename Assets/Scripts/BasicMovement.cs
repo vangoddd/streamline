@@ -72,5 +72,15 @@ public class BasicMovement : MonoBehaviour
         }
         
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Physics2D.IgnoreLayerCollision(6, 8);
+        // if (collision.gameObject.tag == "enemy")
+        // {
+        //     Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+        //     Physics2D.IgnoreCollision(collision.collider, GetComponent<CircleCollider2D>());
+        // }
+    }
 }
 

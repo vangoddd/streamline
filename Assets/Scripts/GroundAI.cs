@@ -10,6 +10,13 @@ public class GroundAI : MonoBehaviour
 
     public float speed = 200f;
     public float nextWaypointDistance = 0.5f;
+    public float atkRange = 0.5f;
+    public int atkDmg = 50;
+
+    public bool drawGizmo = false;
+
+    public float attackCooldown = 3.5f;
+    private float attackTimer = 0f;
 
     Path path;
     int currentWaypoint = 0;
@@ -17,13 +24,17 @@ public class GroundAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    public LayerMask playerMask;
+
     private EnemyScript enemyScript;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         enemyScript = GetComponent<EnemyScript>();
         //will be called when player is close enough
@@ -43,9 +54,23 @@ public class GroundAI : MonoBehaviour
         }
     }
 
+    void Update(){
+        if(attackTimer > 0){
+            attackTimer -= Time.deltaTime;
+        }else{
+            if(Vector2.Distance(transform.position, target.position) <= (atkRange) && !enemyScript.isStunned()){
+                //play attack animation
+                attackTimer = attackCooldown;
+                enemyScript.setIsAttacking(1);
+                animator.SetTrigger("attack");
+            }
+        }
+    }
+
     // Should also handle animation
     void FixedUpdate()
     {
+        //-----------------------
         if(path == null){
             return;
         }
@@ -77,10 +102,32 @@ public class GroundAI : MonoBehaviour
     }
 
     private void Move(Vector2 force){
-        if(enemyScript.isAggro() && enemyScript.isCanMove()){
-            rb.AddForce(force);
-        }else{
-            return;
+        if(enemyScript.isCanMove()){
+            if(enemyScript.isAggro()){  
+                rb.AddForce(force);
+            }else{
+                return;
+            }
         }
+        
+    }
+
+    public void groundAttack(){
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(transform.position, atkRange, playerMask);
+        
+        if(hitPlayer.Length > 0){
+            
+            hitPlayer[0].gameObject.GetComponentInParent<PlayerHealthScript>().hurt(atkDmg);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if(drawGizmo){
+            // Draw a yellow sphere at the transform's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, atkRange);
+        }
+        
     }
 }

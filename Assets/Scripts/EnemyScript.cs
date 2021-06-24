@@ -23,6 +23,10 @@ public class EnemyScript : MonoBehaviour
 
     private float stunTimer = 0;
     private bool stunned = false;
+    public int stunResist = 0;
+    private int consecutiveStun = 0;
+
+    private bool attacking = false;
 
     public int health = 100;
     public EnemyType enemyType;
@@ -43,7 +47,7 @@ public class EnemyScript : MonoBehaviour
                 if(stunTimer < 0f) stunned = false;
             }
 
-            if(stunned){
+            if(stunned || attacking){
                 canMove = false;
             }else{
                 canMove = true;
@@ -52,10 +56,15 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    public void hurt(int amt, bool ranged){
+    public void hurt(int amt, bool ranged, float hurtStun){
         if(!isAggroed){
             aggro();
         }
+
+        if(!(enemyType == EnemyType.ground && ranged)){
+            stun(hurtStun);
+        }
+
         if(ranged && enemyType == EnemyType.ground){
             this.health -= (int) ((float) amt * 0.5f);
         }else if(!ranged && enemyType == EnemyType.air){
@@ -89,10 +98,31 @@ public class EnemyScript : MonoBehaviour
     public void stun(float duration){
 
         //play stunned animation
+        if(stunned){
+            consecutiveStun++;
+        }
+        
+        if((consecutiveStun >= stunResist) && (stunResist > 0)){
+            Debug.Log("breaking from stun");
+            stunned = false;
+            stunTimer = 0;
+            consecutiveStun = 0;
+            return;
+        }
         
         stunned = true;
         stunTimer = duration;
         rb.velocity = new Vector2(0f, 0f);
+    }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        Physics2D.IgnoreLayerCollision(8, 8);
+        // if (collision.gameObject.tag == "enemy")
+        // {
+        //     Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+        //     Physics2D.IgnoreCollision(collision.collider, GetComponent<CircleCollider2D>());
+        // }
     }
     
 
@@ -107,7 +137,31 @@ public class EnemyScript : MonoBehaviour
         canMove = move;
     }
 
+    public void setCanMoveInt(int move){
+        if(move == 0){
+            canMove = false;
+        }else{
+            canMove = true;
+        }
+    }
+
     public bool isCanMove(){
         return canMove;
+    }
+
+    public void StopEnemyMovement(){
+        rb.velocity = new Vector2(0f, 0f);
+    }
+
+    public bool isStunned(){
+        return stunned;
+    }
+
+    public void setIsAttacking(int a){
+        if(a == 0){
+            attacking = false;
+        }else{
+            attacking = true;
+        }
     }
 }

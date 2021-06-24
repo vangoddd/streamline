@@ -23,8 +23,7 @@ public class ProjectileScript : MonoBehaviour
         }
         if (col.gameObject.CompareTag("enemy")){
             EnemyScript e = col.gameObject.GetComponent<EnemyScript>();
-            e.stun(0.5f);
-            e.hurt(damage, true);
+            e.hurt(damage, true, 0.5f);
         }else{
             Instantiate(hitFx, transform.position, Quaternion.identity);
         }

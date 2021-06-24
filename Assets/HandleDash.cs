@@ -66,4 +66,8 @@ public class HandleDash : MonoBehaviour
             return false;
         }
     }
+
+    public float getSkillCooldown(){
+        return skillTimer;
+    }
 }

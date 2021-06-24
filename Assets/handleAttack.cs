@@ -70,9 +70,9 @@ public class handleAttack : MonoBehaviour
                     }
                     animator.SetTrigger("Combo");
                     if(controller.isFacingRight()){
-                        rb.AddForce(new Vector2(120f, 170f));
+                        rb.AddForce(new Vector2(50f, 100f));
                     }else{
-                        rb.AddForce(new Vector2(-120f, 170f));
+                        rb.AddForce(new Vector2(-50f, 100f));
                     }
                     applyDamage(combo);
                 }
@@ -125,13 +125,12 @@ public class handleAttack : MonoBehaviour
             if(e != null){
                 EnemyScript enemy = e.GetComponent<EnemyScript>();
                 Rigidbody2D enemyRb = e.GetComponent<Rigidbody2D>();
-                enemy.stun(1f);
-                enemy.hurt(attackDamage, false);
+                enemy.hurt(attackDamage, false, 1f);
 
                 if(controller.isFacingRight()){
-                    enemyRb.AddForce(new Vector2(40f, 30f));
+                    enemyRb.AddForce(new Vector2(20f, 10f));
                 }else{
-                    enemyRb.AddForce(new Vector2(-40f, 30f));
+                    enemyRb.AddForce(new Vector2(-20f, 10f));
                 }
             }
         }
