@@ -42,8 +42,14 @@ TagManager:
   - name: StaticBG
     uniqueID: 540644109
     locked: 0
+  - name: BuildingBG
+    uniqueID: 1564467557
+    locked: 0
   - name: BG
     uniqueID: 3850548963
+    locked: 0
+  - name: Decors
+    uniqueID: 1716829395
     locked: 0
   - name: Default
     uniqueID: 0
