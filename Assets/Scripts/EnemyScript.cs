@@ -87,6 +87,8 @@ public class EnemyScript : MonoBehaviour
     }
 
     private void die(){
+        CameraShake.Instance.shakeCamera(2f, 0.2f);
+
         if(dropHeal){
             Instantiate(healPot, transform.position, Quaternion.identity);
         }

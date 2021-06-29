@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HandleDash : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class HandleDash : MonoBehaviour
 
     public int skillCooldown = 7;
     private float skillTimer = 0f;
+
+    public UnityEvent shakeEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class HandleDash : MonoBehaviour
                 skillTimer = skillCooldown;
                 Dash();
             }else{
+                shakeEvent.Invoke();
                 Debug.Log("Skill on CD for" + skillTimer);
             }
             
@@ -41,6 +45,7 @@ public class HandleDash : MonoBehaviour
     }
 
     void Dash(){
+        CameraShake.Instance.shakeCamera(1f, 0.2f);
         basicMovement.StopMovementBasic(true);
         if(basicMovement.horizontalMove >= 0.01f){
             Instantiate(dashFx, transform.position, Quaternion.Euler(0f, 0f, 0f)); 

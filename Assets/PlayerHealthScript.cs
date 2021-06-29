@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
      
 
 public class PlayerHealthScript : MonoBehaviour
 {       
     public int health;
     private int maxHealth;
+
+    public UnityEvent shakeEvent;
 
     public int potCount = 0;
     public int healAmt = 50;
@@ -29,12 +32,13 @@ public class PlayerHealthScript : MonoBehaviour
         }
         //##########################################
 
+        //Handle healing
         if(Input.GetKeyDown(KeyCode.E)){
             if(potCount > 0){
                 potCount--;
                 health = (int) Mathf.Min((float)health + (float) healAmt, (float) maxHealth);
             }else{
-                //play screen shake
+                shakeEvent.Invoke();
             }
 
         }
@@ -45,6 +49,8 @@ public class PlayerHealthScript : MonoBehaviour
         if(health <= 0){
             die();
         }
+
+        shakeEvent.Invoke();
     }
 
     public void die(){
