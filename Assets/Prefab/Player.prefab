@@ -429,6 +429,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashFx: {fileID: 1051856852692343548, guid: ac885d9d1f570784c8a5853ff6f83a34, type: 3}
   skillCooldown: 3
+  shakeEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9151090957969307803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +445,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  shakeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: HUDShake, Assembly-CSharp
+        m_MethodName: shakeHUD
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  potCount: 0
+  healAmt: 50
+  hitImmunityTime: 2
+  immuneTimer: 0
 --- !u!1 &4440297906908269928
 GameObject:
   m_ObjectHideFlags: 0

@@ -110,10 +110,6 @@ public class EnemyScript : MonoBehaviour
             return;
         }
 
-        //play stunned animation
-        // if(stunned){
-        //     consecutiveStun++;
-        // }
         consecutiveStun++;
         
         if((consecutiveStun >= stunResist) && (stunResist > 0)){

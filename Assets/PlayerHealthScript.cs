@@ -14,10 +14,16 @@ public class PlayerHealthScript : MonoBehaviour
 
     public int potCount = 0;
     public int healAmt = 50;
+
+    public float hitImmunityTime = 2f;
+    public float immuneTimer = 0f;
+
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
         maxHealth = health;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -30,6 +36,9 @@ public class PlayerHealthScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.O)){
             hurt(20);
         }
+        if(Input.GetKeyDown(KeyCode.U)){
+            health += 20;
+        }
         //##########################################
 
         //Handle healing
@@ -40,11 +49,26 @@ public class PlayerHealthScript : MonoBehaviour
             }else{
                 shakeEvent.Invoke();
             }
-
+        }
+        
+        //handle immunity
+        if(immuneTimer > 0){
+            immuneTimer -= Time.deltaTime;
+            if(Mathf.FloorToInt(immuneTimer * 5) % 2 == 0){
+                spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            }else{
+                spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+            }
+        }else{
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
         }
     }
 
     public void hurt(int amt){
+        if(immuneTimer > 0){
+            return;
+        }
+        immuneTimer = hitImmunityTime;
         health -= amt;
         if(health <= 0){
             die();

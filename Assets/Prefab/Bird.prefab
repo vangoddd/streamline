@@ -188,6 +188,7 @@ MonoBehaviour:
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
   finishedAggro: 0
   stunResist: 0
+  cannotBeStunned: 0
   dropHeal: 0
   healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
   health: 100
@@ -211,5 +212,5 @@ MonoBehaviour:
   atkDmg: 50
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   attackCooldown: 3.5
