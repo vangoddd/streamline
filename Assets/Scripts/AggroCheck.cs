@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AggroCheck : MonoBehaviour
 {
-    public Transform aggroCheck;
-    public float aggroRange = 15f;
+    public Transform aggro1, aggro2;
+    //public float aggroRange = 15f;
     public LayerMask enemyMask;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,8 @@ public class AggroCheck : MonoBehaviour
     void Update()
     {
         //Scans for the enemy
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(aggroCheck.position, aggroRange, enemyMask);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(aggroCheck.position, aggroRange, enemyMask);
+        Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(aggro1.position, aggro2.position, enemyMask); 
 
             //Do Aggro on enemy
             foreach(Collider2D e in hitEnemies){
@@ -27,6 +28,6 @@ public class AggroCheck : MonoBehaviour
     }
 
     void OnDrawGizmosSelected(){
-        Gizmos.DrawWireSphere(aggroCheck.position, aggroRange);
+        
     }
 }

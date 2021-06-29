@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    private Text healthText;
     public PlayerHealthScript playerHealthScript;
+    private Image uiImage;
     // Start is called before the first frame update
     void Start()
     {
-        healthText = GetComponent<Text>();
+        uiImage = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = playerHealthScript.health + "";
+        uiImage.fillAmount = ((float)playerHealthScript.health / (float)playerHealthScript.getMaxHealth());
     }
 }

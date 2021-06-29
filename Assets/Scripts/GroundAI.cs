@@ -18,6 +18,10 @@ public class GroundAI : MonoBehaviour
     public float attackCooldown = 3.5f;
     private float attackTimer = 0f;
 
+    private float jumpCooldown = 4f;
+    private bool jumping = false;
+    private float jumpTimer = 0;
+
     Path path;
     int currentWaypoint = 0;
 
@@ -55,6 +59,16 @@ public class GroundAI : MonoBehaviour
     }
 
     void Update(){
+        if(jumpTimer > 0){
+            jumpTimer -= Time.deltaTime;
+        }else{
+            if(jumping){
+                jumping = false;
+                jumpTimer = jumpCooldown;
+                rb.AddForce(new Vector2(0f, 300f));
+            }
+        }
+
         if(attackTimer > 0){
             attackTimer -= Time.deltaTime;
         }else{
@@ -85,6 +99,10 @@ public class GroundAI : MonoBehaviour
         Vector2 force = dir * speed * Time.deltaTime;
 
         Move(force);
+
+        if(dir.y > 0.5){
+            Jump();
+        }
 
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -129,5 +147,11 @@ public class GroundAI : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, atkRange);
         }
         
+    }
+
+    private void Jump(){
+        if(jumpTimer <= 0){
+            jumping = true;
+        }
     }
 }

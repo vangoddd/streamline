@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &209413036089467641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7119242759224486349}
+  m_Layer: 6
+  m_Name: AggroCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7119242759224486349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209413036089467641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2570710015552289818}
+  - {fileID: 8286854893121706056}
+  m_Father: {fileID: 4440297906552464626}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2488332021072462279
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +61,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7343289730457985369
 CapsuleCollider2D:
@@ -76,7 +108,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8521948147804143027
 CircleCollider2D:
@@ -113,6 +145,7 @@ GameObject:
   - component: {fileID: 9036592379787132941}
   - component: {fileID: 5664372207267922900}
   - component: {fileID: 6852213192249634906}
+  - component: {fileID: 9151090957969307803}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -134,12 +167,12 @@ Transform:
   - {fileID: 4440297908212961476}
   - {fileID: 4440297906908269931}
   - {fileID: 4440297907996099956}
-  - {fileID: 6756295234569744091}
   - {fileID: 2380310247599514753}
   - {fileID: 8015254368802659785}
   - {fileID: 6786819093654496435}
   - {fileID: 8574034148562739568}
   - {fileID: 1222619909072635462}
+  - {fileID: 7119242759224486349}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dc0128be35caa4eb2b834c6c3ba886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroCheck: {fileID: 6756295234569744091}
-  aggroRange: 4.5
+  aggro1: {fileID: 0}
+  aggro2: {fileID: 0}
   enemyMask:
     serializedVersion: 2
     m_Bits: 256
@@ -396,6 +429,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashFx: {fileID: 1051856852692343548, guid: ac885d9d1f570784c8a5853ff6f83a34, type: 3}
   skillCooldown: 3
+--- !u!114 &9151090957969307803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440297906552464628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a84c33c5d426374baac5616b59af27f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &4440297906908269928
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +561,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1762234275470583392
 CircleCollider2D:
@@ -533,6 +579,66 @@ CircleCollider2D:
   m_Offset: {x: 0.43, y: 0}
   serializedVersion: 2
   m_Radius: 0.75
+--- !u!1 &5251853338351964678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2570710015552289818}
+  m_Layer: 6
+  m_Name: aggro1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2570710015552289818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5251853338351964678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.53, y: 1.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7119242759224486349}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5446601266980550312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8286854893121706056}
+  m_Layer: 6
+  m_Name: aggro2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8286854893121706056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446601266980550312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.53, y: -1.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7119242759224486349}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5815920114390069544
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +668,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4443059719202832490
 BoxCollider2D:
@@ -590,36 +696,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.82, y: 1}
   m_EdgeRadius: 0
---- !u!1 &5951719876736230226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6756295234569744091}
-  m_Layer: 0
-  m_Name: Aggro check
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6756295234569744091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951719876736230226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6214823016171944128
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +725,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4440297906552464626}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &6731480182402951514
 CapsuleCollider2D:

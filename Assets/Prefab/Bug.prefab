@@ -216,7 +216,7 @@ MonoBehaviour:
   speed: 250
   nextWaypointDistance: 0.5
   atkRange: 0.8
-  atkDmg: 50
+  atkDmg: 35
   drawGizmo: 0
   attackCooldown: 3.5
   playerMask:
