@@ -385,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75dc0128be35caa4eb2b834c6c3ba886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggro1: {fileID: 0}
-  aggro2: {fileID: 0}
+  aggro1: {fileID: 2570710015552289818}
+  aggro2: {fileID: 8286854893121706056}
   enemyMask:
     serializedVersion: 2
     m_Bits: 256

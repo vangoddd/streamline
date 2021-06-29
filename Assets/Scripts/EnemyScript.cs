@@ -28,6 +28,9 @@ public class EnemyScript : MonoBehaviour
 
     private bool attacking = false;
 
+    public bool dropHeal = false;
+    public GameObject healPot;
+
     public int health = 100;
     public EnemyType enemyType;
     // Start is called before the first frame update
@@ -82,7 +85,10 @@ public class EnemyScript : MonoBehaviour
     }
 
     private void die(){
-        Debug.Log("Die");
+        if(dropHeal){
+            Instantiate(healPot, transform.position, Quaternion.identity);
+        }
+
         Instantiate(dieFx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

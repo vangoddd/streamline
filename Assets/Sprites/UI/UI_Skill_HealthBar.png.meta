@@ -1,7 +1,40 @@
 fileFormatVersion: 2
 guid: 4cf28d30fe1b6514fb800e87ef2b7c1f
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8930255471751665036
+    second: UI_Skill_HealthBar_0
+  - first:
+      213: -4953616911672242184
+    second: UI_Skill_HealthBar_1
+  - first:
+      213: -3323891385361751802
+    second: UI_Skill_HealthBar_2
+  - first:
+      213: -4558609846149919306
+    second: UI_Skill_HealthBar_3
+  - first:
+      213: -7565288791623032016
+    second: UI_Skill_HealthBar_4
+  - first:
+      213: -2847877467680227628
+    second: UI_Skill_HealthBar_5
+  - first:
+      213: 5429676413300929584
+    second: UI_Skill_HealthBar_6
+  - first:
+      213: -4411670784084224954
+    second: UI_Skill_HealthBar_7
+  - first:
+      213: 6470605781883483131
+    second: UI_Skill_HealthBar_8
+  - first:
+      213: -5129581380216223280
+    second: UI_Skill_HealthBar_9
+  - first:
+      213: 5330096932644328883
+    second: UI_Skill_HealthBar_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +65,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,12 +74,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 140
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,9 +108,264 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c851f3b7904aeeb70800000000000000
+      internalID: 8930255471751665036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ff886a0aa7314bb0800000000000000
+      internalID: -4953616911672242184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601288f456a2fd1d0800000000000000
+      internalID: -3323891385361751802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bdc2aa5f709cb0c0800000000000000
+      internalID: -4558609846149919306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033a0183de1b20790800000000000000
+      internalID: -7565288791623032016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4deb417288e4a78d0800000000000000
+      internalID: -2847877467680227628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0347e142ee51a5b40800000000000000
+      internalID: 5429676413300929584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 71, y: 18, z: 4, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 644d0b0cbc896c2c0800000000000000
+      internalID: -4411670784084224954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3f0c60da53cc950800000000000000
+      internalID: 6470605781883483131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d901c199e010d8b0800000000000000
+      internalID: -5129581380216223280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Skill_HealthBar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 140
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b51aa09bee48f940800000000000000
+      internalID: 5330096932644328883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

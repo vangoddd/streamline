@@ -151,6 +151,8 @@ MonoBehaviour:
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
   finishedAggro: 0
   stunResist: 0
+  dropHeal: 0
+  healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
   health: 100
   enemyType: 0
 --- !u!95 &8975614573099782146
