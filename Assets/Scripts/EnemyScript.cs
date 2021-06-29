@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     private bool stunned = false;
     public int stunResist = 0;
     private int consecutiveStun = 0;
+    public bool cannotBeStunned = false;
 
     private bool attacking = false;
 
@@ -33,6 +34,7 @@ public class EnemyScript : MonoBehaviour
 
     public int health = 100;
     public EnemyType enemyType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +104,9 @@ public class EnemyScript : MonoBehaviour
     }
 
     public void stun(float duration){
+        if(cannotBeStunned){
+            return;
+        }
 
         //play stunned animation
         // if(stunned){
