@@ -187,6 +187,7 @@ MonoBehaviour:
   hitFx: {fileID: 8113027971453377695, guid: d0f09cecd68ebed42b15160142786393, type: 3}
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
   finishedAggro: 0
+  stunResist: 0
   health: 100
   enemyType: 1
 --- !u!114 &9162120901732963328
@@ -204,3 +205,9 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 200
   nextWaypointDistance: 0.5
+  atkRange: 1
+  atkDmg: 50
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackCooldown: 3.5

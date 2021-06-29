@@ -11,6 +11,15 @@ public class FlyAi : MonoBehaviour
     public float speed = 200f;
     public float nextWaypointDistance = 0.5f;
 
+    public float atkRange = 0.8f;
+    public int atkDmg = 50;
+    public LayerMask playerMask;
+
+    public float attackCooldown = 3.5f;
+    private float attackTimer = 0f;
+
+    private Animator animator;
+
     Path path;
     int currentWaypoint = 0;
 
@@ -24,6 +33,7 @@ public class FlyAi : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         enemyScript = GetComponent<EnemyScript>();
 
@@ -44,11 +54,28 @@ public class FlyAi : MonoBehaviour
         }
     }
 
+    void Update(){
+        if(attackTimer > 0){
+            attackTimer -= Time.deltaTime;
+        }else{
+            if(Vector2.Distance(transform.position, target.position) <= (atkRange) && !enemyScript.isStunned()){
+                //play attack animation
+                attackTimer = attackCooldown;
+                enemyScript.setIsAttacking(1);
+                animator.SetTrigger("attack");
+            }
+        }
+    }
+
     // Should also handle animation
     void FixedUpdate()
     {
         if(path == null){
             return;
+        }
+
+        if(currentWaypoint >= path.vectorPath.Count){
+            currentWaypoint = path.vectorPath.Count-1;
         }
 
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -75,6 +102,14 @@ public class FlyAi : MonoBehaviour
             rb.AddForce(force);
         }else{
             return;
+        }
+    }
+
+    public void airAttack(){
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(transform.position, atkRange, playerMask);
+        
+        if(hitPlayer.Length > 0){
+            hitPlayer[0].gameObject.GetComponentInParent<PlayerHealthScript>().hurt(atkDmg);
         }
     }
 }

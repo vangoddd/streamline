@@ -98,9 +98,10 @@ public class EnemyScript : MonoBehaviour
     public void stun(float duration){
 
         //play stunned animation
-        if(stunned){
-            consecutiveStun++;
-        }
+        // if(stunned){
+        //     consecutiveStun++;
+        // }
+        consecutiveStun++;
         
         if((consecutiveStun >= stunResist) && (stunResist > 0)){
             Debug.Log("breaking from stun");

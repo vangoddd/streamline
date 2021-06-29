@@ -54,3 +54,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Hit Effects
+    uniqueID: 399686203
+    locked: 0
