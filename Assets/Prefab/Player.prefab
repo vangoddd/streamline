@@ -464,6 +464,7 @@ MonoBehaviour:
   healAmt: 50
   hitImmunityTime: 2
   immuneTimer: 0
+  healFX: {fileID: 2662830270719810050, guid: 5eb1e33ce2d4e2b45a50ea27b31bec51, type: 3}
 --- !u!1 &4440297906908269928
 GameObject:
   m_ObjectHideFlags: 0

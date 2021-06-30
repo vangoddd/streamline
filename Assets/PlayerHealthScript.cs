@@ -18,6 +18,8 @@ public class PlayerHealthScript : MonoBehaviour
     public float hitImmunityTime = 2f;
     public float immuneTimer = 0f;
 
+    public GameObject healFX;
+
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,8 @@ public class PlayerHealthScript : MonoBehaviour
             if(potCount > 0){
                 potCount--;
                 health = (int) Mathf.Min((float)health + (float) healAmt, (float) maxHealth);
+
+                Instantiate(healFX, transform.position, Quaternion.identity, gameObject.transform);
             }else{
                 shakeEvent.Invoke();
             }
