@@ -127,10 +127,12 @@ public class handleAttack : MonoBehaviour
                 Rigidbody2D enemyRb = e.GetComponent<Rigidbody2D>();
                 enemy.hurt(attackDamage, false, 1f);
 
-                if(controller.isFacingRight()){
-                    enemyRb.AddForce(new Vector2(20f, 10f));
-                }else{
-                    enemyRb.AddForce(new Vector2(-20f, 10f));
+                if(!enemy.GetComponent<EnemyScript>().isBoss){
+                    if(controller.isFacingRight()){
+                        enemyRb.AddForce(new Vector2(20f, 10f));
+                    }else{
+                        enemyRb.AddForce(new Vector2(-20f, 10f));
+                    }
                 }
             }
         }

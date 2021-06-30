@@ -13,6 +13,8 @@ public class EnemyScript : MonoBehaviour
     public GameObject hitFx;
     public GameObject dieFx;
 
+    public bool isBoss = false;
+
     private Rigidbody2D rb;
 
     private bool isAggroed = false;

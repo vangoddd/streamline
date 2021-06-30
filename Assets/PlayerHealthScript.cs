@@ -72,6 +72,7 @@ public class PlayerHealthScript : MonoBehaviour
         if(immuneTimer > 0){
             return;
         }
+        CameraShake.Instance.shakeCamera(4f, 0.2f);
         immuneTimer = hitImmunityTime;
         health -= amt;
         if(health <= 0){

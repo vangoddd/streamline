@@ -33,6 +33,10 @@ public class BossAi : MonoBehaviour
     private float stopTimer = 0f;
     private bool stopping = false;
 
+    public GameObject specialAtkFx;
+
+    public Transform spawnPoint;
+
     //###################
     // - Melee (move then attack)
     // - Ranged (stop moving then attack)
@@ -151,8 +155,24 @@ public class BossAi : MonoBehaviour
         
     }
 
-    public void specialAttack(){
+    private int spcAtkCount = 0;
 
+    public void specialAttack(){
+        spcAtkCount = 10;
+        InvokeRepeating("spawnAttack", 0, 0.1f);
+    }
+
+    private void spawnAttack(){
+        Debug.Log("attacking!" + spcAtkCount);
+        float offset = 0f;
+        if(transform.localScale.x < 0){ //facing left
+            offset = 0.5f * (10 - spcAtkCount);
+        }else{ //facing right
+            offset = -0.5f * (10 - spcAtkCount);
+        }
+        Vector3 spawnPosition = new Vector3(spawnPoint.position.x + offset, spawnPoint.position.y,  spawnPoint.position.z);
+        Instantiate(specialAtkFx, spawnPosition, Quaternion.identity);
+        if (--spcAtkCount == 0) CancelInvoke("spawnAttack");
     }
 
     public void shakeEvent(){
