@@ -15,7 +15,7 @@ public class BossAi : MonoBehaviour
     public bool drawGizmo = false;
 
     public float attackCooldown = 3.5f;
-    private float attackTimer = 0f;
+    private float attackTimer = 3f;
 
     Path path;
     int currentWaypoint = 0;
@@ -32,6 +32,7 @@ public class BossAi : MonoBehaviour
     public int specialAtkCounter = 4;
     private float stopTimer = 0f;
     private bool stopping = false;
+
     //###################
     // - Melee (move then attack)
     // - Ranged (stop moving then attack)
@@ -46,6 +47,7 @@ public class BossAi : MonoBehaviour
         animator = GetComponent<Animator>();
 
         enemyScript = GetComponent<EnemyScript>();
+
         //will be called when player is close enough
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -64,6 +66,7 @@ public class BossAi : MonoBehaviour
     }
 
     void Update(){
+        animator.SetBool("isAggroed", enemyScript.isAggro());
 
         if(stopTimer > 0){
             enemyScript.StopEnemyMovement();
@@ -74,26 +77,27 @@ public class BossAi : MonoBehaviour
             enemyScript.setCanMove(true); 
         }
         
-
-        if(attackTimer > 0){
-            attackTimer -= Time.deltaTime;
-        }else{
-            if(attackCounter < specialAtkCounter){ //normal attack
-                attackCounter++;
-                attackTimer = attackCooldown;
-                enemyScript.setIsAttacking(1);
-                if(Vector2.Distance(transform.position, target.position) <= (atkRange) && !enemyScript.isStunned()){
-                    animator.SetTrigger("melee");
-                }else{
-                    animator.SetTrigger("shoot");
-                }
+        if(enemyScript.isAggro()){
+            if(attackTimer > 0){
+                attackTimer -= Time.deltaTime;
             }else{
-                attackCounter = 0;
-                enemyScript.setIsAttacking(1);
-                attackTimer = attackCooldown;
-                animator.SetTrigger("slam");
+                if(attackCounter < specialAtkCounter){ //normal attack
+                    attackCounter++;
+                    attackTimer = attackCooldown;
+                    enemyScript.setIsAttacking(1);
+                    if(Vector2.Distance(transform.position, target.position) <= (atkRange) && !enemyScript.isStunned()){
+                        animator.SetTrigger("melee");
+                    }else{
+                        animator.SetTrigger("shoot");
+                    }
+                }else{
+                    attackCounter = 0;
+                    enemyScript.setIsAttacking(1);
+                    attackTimer = attackCooldown;
+                    animator.SetTrigger("slam");
+                }
+                
             }
-            
         }
     }
 
@@ -104,9 +108,6 @@ public class BossAi : MonoBehaviour
         if(path == null){
             return;
         }
-
-        //Debug.Log(path.vectorPath.Count + " " + currentWaypoint);
-
         if(currentWaypoint >= path.vectorPath.Count){
             currentWaypoint = path.vectorPath.Count-1;
         }
@@ -117,8 +118,12 @@ public class BossAi : MonoBehaviour
             rb.velocity = Vector2.zero;
             force = Vector2.zero;
         }
-        animator.SetBool("stopping", stopping);
-        Move(force);
+
+        if(enemyScript.isAggro()){
+            animator.SetBool("stopping", stopping);
+            Move(force);
+        }
+        
 
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if(dist < nextWaypointDistance){
@@ -145,6 +150,14 @@ public class BossAi : MonoBehaviour
         }
         
     }
+
+    public void specialAttack(){
+
+    }
+
+    public void shakeEvent(){
+        CameraShake.Instance.shakeCamera(3f, 0.2f);
+    }
     
     void stop(float duration){
         stopping = true;
@@ -159,6 +172,10 @@ public class BossAi : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, atkRange);
         }
         
+    }
+
+    public void setAttackTimer(float time){
+        attackTimer = time;
     }
 
 }
