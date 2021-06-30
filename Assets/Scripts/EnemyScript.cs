@@ -45,6 +45,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(finishedAggro){
 
             if(stunTimer > 0f){
@@ -173,5 +174,9 @@ public class EnemyScript : MonoBehaviour
         }else{
             attacking = true;
         }
+    }
+
+    public bool isAttacking(){
+        return attacking;
     }
 }
