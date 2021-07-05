@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HPRestore : MonoBehaviour
 {
     private float originalY;
+    public UnityEvent shakeEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class HPRestore : MonoBehaviour
         if(col.gameObject.layer == 9){
             col.GetComponentInParent<PlayerHealthScript>().addPotion();
             Destroy(gameObject, 0f);
+            shakeEvent.Invoke();
         }
+        
     }
 }

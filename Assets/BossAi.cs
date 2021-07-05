@@ -10,7 +10,7 @@ public class BossAi : MonoBehaviour
     public float speed = 200f;
     public float nextWaypointDistance = 0.5f;
     public float atkRange = 0.5f;
-    public int atkDmg = 50;
+    public int atkDmg = 30;
 
     public bool drawGizmo = false;
 
@@ -33,7 +33,10 @@ public class BossAi : MonoBehaviour
     private float stopTimer = 0f;
     private bool stopping = false;
 
+    public float projectileSpeed = 200f;
+
     public GameObject specialAtkFx;
+    public GameObject projectilePrefab;
 
     public Transform spawnPoint;
 
@@ -105,6 +108,45 @@ public class BossAi : MonoBehaviour
         }
     }
 
+    // HANDLING ATK DMG
+
+    //******** Melee **********
+    public void meleeAttack(){
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(transform.position, atkRange, playerMask);
+        if(hitPlayer.Length > 0){      
+            hitPlayer[0].gameObject.GetComponentInParent<PlayerHealthScript>().hurt(atkDmg);
+        }
+    }
+
+    //******** Ranged *********
+    public void rangedAttack(){
+        Vector3 dir = (target.position - transform.position).normalized;
+
+        GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().AddForce(dir * projectileSpeed);
+    }
+
+    //******** Special ********
+    private int spcAtkCount = 0;
+
+    public void specialAttack(){
+        spcAtkCount = 10;
+        InvokeRepeating("spawnAttack", 0, 0.1f);
+    }
+
+    private void spawnAttack(){
+        Debug.Log("attacking!" + spcAtkCount);
+        float offset = 0f;
+        if(transform.localScale.x < 0){ //facing left
+            offset = 0.5f * (10 - spcAtkCount);
+        }else{ //facing right
+            offset = -0.5f * (10 - spcAtkCount);
+        }
+        Vector3 spawnPosition = new Vector3(spawnPoint.position.x + offset, spawnPoint.position.y,  spawnPoint.position.z);
+        Instantiate(specialAtkFx, spawnPosition, Quaternion.identity);
+        if (--spcAtkCount == 0) CancelInvoke("spawnAttack");
+    }
+
     // Should also handle animation
     void FixedUpdate()
     {
@@ -155,25 +197,7 @@ public class BossAi : MonoBehaviour
         
     }
 
-    private int spcAtkCount = 0;
-
-    public void specialAttack(){
-        spcAtkCount = 10;
-        InvokeRepeating("spawnAttack", 0, 0.1f);
-    }
-
-    private void spawnAttack(){
-        Debug.Log("attacking!" + spcAtkCount);
-        float offset = 0f;
-        if(transform.localScale.x < 0){ //facing left
-            offset = 0.5f * (10 - spcAtkCount);
-        }else{ //facing right
-            offset = -0.5f * (10 - spcAtkCount);
-        }
-        Vector3 spawnPosition = new Vector3(spawnPoint.position.x + offset, spawnPoint.position.y,  spawnPoint.position.z);
-        Instantiate(specialAtkFx, spawnPosition, Quaternion.identity);
-        if (--spcAtkCount == 0) CancelInvoke("spawnAttack");
-    }
+    
 
     public void shakeEvent(){
         CameraShake.Instance.shakeCamera(3f, 0.2f);

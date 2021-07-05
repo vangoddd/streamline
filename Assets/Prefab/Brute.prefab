@@ -233,7 +233,7 @@ MonoBehaviour:
   cannotBeStunned: 0
   dropHeal: 0
   healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
-  health: 100
+  health: 1000
   enemyType: 0
 --- !u!114 &6422362276812132203
 MonoBehaviour:
@@ -256,7 +256,9 @@ MonoBehaviour:
   attackCooldown: 7
   playerMask:
     serializedVersion: 2
-    m_Bits: 64
-  specialAtkCounter: 3
-  specialAtkFx: {fileID: 0}
+    m_Bits: 512
+  specialAtkCounter: 0
+  projectileSpeed: 200
+  specialAtkFx: {fileID: 5761699825062530677, guid: 4ca94c9e55168d343bbdd5f7fd83272a, type: 3}
+  projectilePrefab: {fileID: 2530782150264911711, guid: 8608126bc18a82144a1fd1ba55d1d05f, type: 3}
   spawnPoint: {fileID: 1255813924856343407}
