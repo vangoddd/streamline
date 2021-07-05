@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-    public PlayerHealthScript playerHealthScript;
+    private PlayerHealthScript playerHealthScript;
     private Image uiImage;
     private float lastHealth, lastSmoothHealth;
     private float duration = 0.7f;
@@ -16,7 +16,7 @@ public class HealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //maxHealth = (float) playerHealthScript.getMaxHealth();
+        playerHealthScript = GameObject.Find("Player").GetComponent<PlayerHealthScript>();
         lastHealth = playerHealthScript.health;
         uiImage = GetComponent<Image>();
     }

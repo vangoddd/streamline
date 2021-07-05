@@ -8,12 +8,13 @@ public class UiController : MonoBehaviour
 {
     private Image image;
     public Sprite cooldown, ready;
-    public HandleDash handleDash;
+    private HandleDash handleDash;
 
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
+        handleDash = GameObject.Find("Player").GetComponent<HandleDash>();
     }
 
     // Update is called once per frame

@@ -6,7 +6,7 @@ using Pathfinding;
 public class FlyAi : MonoBehaviour
 {
     //ref : https://www.youtube.com/watch?v=jvtFUfJ6CP8&t=162s
-    public Transform target;
+    private Transform target;
 
     public float speed = 200f;
     public float nextWaypointDistance = 0.5f;
@@ -35,6 +35,8 @@ public class FlyAi : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        target = GameObject.Find("Player").GetComponent<Transform>();
+    
         enemyScript = GetComponent<EnemyScript>();
 
         //will be called when player is close enough

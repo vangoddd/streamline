@@ -9,12 +9,13 @@ public class HealthPotUI : MonoBehaviour
     public Sprite one, two, three;
     public int potCount = 3;
 
-    public PlayerHealthScript playerHealthScript;
+    private PlayerHealthScript playerHealthScript;
 
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
+        playerHealthScript = GameObject.Find("Player").GetComponent<PlayerHealthScript>();
         
     }
 

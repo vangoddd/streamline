@@ -25,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
 	private float slopeCheckDistance = 0.5f;
 	private bool isOnSlope = false;
 	private float slopeSideAngle;
-	private float maxSlopeAngle = 45f;
+	private float maxSlopeAngle = 55f;
 	private bool canWalkOnSlope;
 
 	private float m_move;

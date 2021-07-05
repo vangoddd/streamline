@@ -233,7 +233,7 @@ MonoBehaviour:
   cannotBeStunned: 0
   dropHeal: 0
   healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
-  health: 1000
+  health: 500
   enemyType: 0
 --- !u!114 &6422362276812132203
 MonoBehaviour:
@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e41b803a2534f469c0a0d8e0051106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 75
   nextWaypointDistance: 0.5
   atkRange: 1.62

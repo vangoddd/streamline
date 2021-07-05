@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public int damage = 20;
+    public int damage = 30;
     public GameObject hitFx;
+
+    public void setDamage(int dmg){
+        damage = dmg;
+    }
 
     void OnTriggerEnter2D(Collider2D col){
         if(col.gameObject.layer == 10 || col.gameObject.CompareTag("enemy")){

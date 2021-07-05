@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class BossAi : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
 
     public float speed = 200f;
     public float nextWaypointDistance = 0.5f;
@@ -52,6 +52,8 @@ public class BossAi : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        target = GameObject.Find("Player").GetComponent<Transform>();
 
         enemyScript = GetComponent<EnemyScript>();
 
