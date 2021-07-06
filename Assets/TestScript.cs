@@ -14,16 +14,15 @@ public class TestScript : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.N)){
-            Debug.Log("changing scene");
-            GameManager.Instance.LevelCompleted += 1;
-            Loader.Load(Loader.Scene.Level2_Slums);
+            AudioManager.playSound("enemy_deathbig2");
+
         }
 
         if(Input.GetKeyDown(KeyCode.B)){
-            Debug.Log(GameManager.Instance.LevelCompleted);
+           AudioManager.playSound("enemy_deathbig1");
         }
         if(Input.GetKeyDown(KeyCode.V)){
-            GameManager.Instance.LevelCompleted += 1;
+            
         }
     }
 }

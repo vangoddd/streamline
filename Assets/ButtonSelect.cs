@@ -17,6 +17,7 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, ISelectHandler
     }
 
     public void OnSelect(BaseEventData e){
+        AudioManager.playSound("ui_buttons");
         arrow.transform.position = transform.position;
     }
 }

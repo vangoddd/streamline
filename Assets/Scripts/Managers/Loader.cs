@@ -9,6 +9,9 @@ public static class Loader
         Level1_Sewer,
         Level2_Slums,
         Level3_Suburbs,
+        Option,
+        Menu,
+        LevelSelect,
     }
 
     public static void Load(Scene scene){
