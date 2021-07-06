@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 1370738689652751026, guid: d6b99028211ceb5449b5d8e28fd57468, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1370738689652751033, guid: d6b99028211ceb5449b5d8e28fd57468, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -193,11 +197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3608155702801577092, guid: 60d619e21b9bf9c41a70e740ec801135, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3608155703913831909, guid: 60d619e21b9bf9c41a70e740ec801135, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8268641158211456674, guid: 60d619e21b9bf9c41a70e740ec801135, type: 3}
       propertyPath: m_RootOrder

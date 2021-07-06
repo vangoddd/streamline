@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Level1_Sewer.unity
+    guid: 956a8302026d4cf41b87ebcc53aef852
+  - enabled: 1
+    path: Assets/Scenes/Level2_Slums.unity
+    guid: 4bd3ae18a6f61654094a03353d774681
+  - enabled: 1
+    path: Assets/Scenes/Level3_Suburbs.unity
+    guid: 99c49dcb909d87546a614b1cacfeb84d
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
