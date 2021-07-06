@@ -57,7 +57,9 @@ public class BossAi : MonoBehaviour
 
         enemyScript = GetComponent<EnemyScript>();
 
-        //will be called when player is close enough
+    }
+
+    public void startPathfinding(){
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 

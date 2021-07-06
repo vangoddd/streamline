@@ -36,6 +36,7 @@ public static class AudioManager
         bgmSource.outputAudioMixerGroup = ResourceManager.Instance.music;
         BGM.AddComponent<DontDestroy>();
         bgmSource.clip = (AudioClip) ResourceManager.Instance.bgm[bgMusic];
+        bgmSource.loop = true;
         bgmSource.Play();
     }
 

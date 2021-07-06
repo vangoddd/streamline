@@ -44,6 +44,10 @@ public class GroundAI : MonoBehaviour
 
         enemyScript = GetComponent<EnemyScript>();
         //will be called when player is close enough
+        //InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+
+    public void startPathfinding(){
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 

@@ -54,7 +54,10 @@ public class GuardAI : MonoBehaviour
         atkDist = Vector2.Distance(transform.position, atkPoint.position) + atkRange;
 
         enemyScript = GetComponent<EnemyScript>();
-        //will be called when player is close enough
+        
+    }
+
+    public void startPathfinding(){
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
