@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class EnemyScript : MonoBehaviour
 
     public int health = 100;
     public EnemyType enemyType;
+
+    public UnityEvent aggroEvent, deathEvent;
 
     public enum DeathSound{
         death1,
@@ -99,6 +102,8 @@ public class EnemyScript : MonoBehaviour
     }
 
     private void die(){
+        deathEvent.Invoke();
+
         CameraShake.Instance.shakeCamera(2f, 0.2f);
 
         if(dropHeal){
@@ -124,6 +129,7 @@ public class EnemyScript : MonoBehaviour
 
     public void aggro(){
         if(!isAggroed){
+            aggroEvent.Invoke();
             isAggroed = true;
             animator.SetTrigger("aggro");
             Debug.Log("Aggro!");
