@@ -21,15 +21,21 @@ public static class AudioManager
         audioSource.PlayOneShot(ResourceManager.Instance.sound[playSound]);
     }
 
-    public static void playMusic(string bgMusic){
+    public static void playMusic(int bgMusic){
+        //If trying to play the same song (Song alrd playing)
+        if(BGM != null && (BGM.GetComponent<AudioSource>().clip == ResourceManager.Instance.bgm[bgMusic] )){
+            return;
+        }
+
+        //if songs already playing
         if(BGM != null){
-            Object.Destroy(BGM);
+            Object.Destroy(BGM); 
         }
         BGM = new GameObject("BGM");
         bgmSource = BGM.AddComponent<AudioSource>();
         bgmSource.outputAudioMixerGroup = ResourceManager.Instance.music;
         BGM.AddComponent<DontDestroy>();
-        bgmSource.clip = ResourceManager.Instance.sound[bgMusic];
+        bgmSource.clip = (AudioClip) ResourceManager.Instance.bgm[bgMusic];
         bgmSource.Play();
     }
 

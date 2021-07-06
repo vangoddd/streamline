@@ -20,6 +20,7 @@ public class ResourceManager : MonoBehaviour
     }
 
     private Object[] sfx;
+    public Object[] bgm;
 
     public Dictionary<string, AudioClip> sound = new Dictionary<string, AudioClip>();
     public AudioMixerGroup SFX, music, master;
@@ -28,6 +29,7 @@ public class ResourceManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _instance = this;
         sfx = Resources.LoadAll("Audio/SFX", typeof(AudioClip));
+        bgm = Resources.LoadAll("Audio/BGM", typeof(AudioClip));
 
         foreach(AudioClip ac in sfx){
             sound.Add(ac.name, ac);
