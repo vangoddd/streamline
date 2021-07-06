@@ -11,4 +11,8 @@ public class SelectPlay : MonoBehaviour
         gameObject.GetComponent<Selectable>().Select();
     }
 
+    public void LoadGame(){
+        Loader.Load(Loader.Scene.Level1_Sewer);
+    }
+
 }
