@@ -10,7 +10,7 @@ public class PlayerHealthScript : MonoBehaviour
     public int health;
     private int maxHealth;
 
-    public UnityEvent shakeEvent;
+    public UnityEvent shakeEvent, deadEvent;
 
     public int potCount = 0;
     public int healAmt = 50;
@@ -31,18 +31,6 @@ public class PlayerHealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debugging code ###########################
-        if(Input.GetKeyDown(KeyCode.P)){
-            die();
-        }
-        if(Input.GetKeyDown(KeyCode.O)){
-            hurt(20);
-        }
-        if(Input.GetKeyDown(KeyCode.U)){
-            health += 20;
-        }
-        //##########################################
-
         //Handle healing
         if(Input.GetKeyDown(KeyCode.E)){
             if(potCount > 0){
@@ -87,9 +75,10 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void die(){
         Debug.Log("player died");
+        deadEvent.Invoke();
         AudioManager.playSound("player_death");
         
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public int getMaxHealth(){

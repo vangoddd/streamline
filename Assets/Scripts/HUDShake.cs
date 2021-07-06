@@ -19,9 +19,6 @@ public class HUDShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M)){
-            shakeHUD(0.5f);
-        }
         shakeTimer -= Time.deltaTime;
         if(shakeTimer >= 0f){
             float amplitude = Mathf.Lerp(amp, 0f, 1 - (shakeTimer / shakeDuration));
