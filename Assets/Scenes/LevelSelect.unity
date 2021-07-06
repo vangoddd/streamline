@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8598422}
   - component: {fileID: 8598421}
   m_Layer: 5
-  m_Name: T2
+  m_Name: T3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb451b523733e14fa58cbb5b568cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
+  dColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
 --- !u!4 &943020747
 Transform:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class handleAttack : MonoBehaviour
             shooting = false;
         }
         
-        if(Input.GetMouseButtonDown(0) && !basicMovement.jump){
+        if(Input.GetMouseButtonDown(0) && !basicMovement.jump && !PauseController.isPaused){
 
             //play the correct attack animation
             if(combo == 0){
@@ -101,7 +101,7 @@ public class handleAttack : MonoBehaviour
             }
         }
 
-        if(Input.GetMouseButtonDown(1) && !shooting && !basicMovement.attacking){
+        if(Input.GetMouseButtonDown(1) && !shooting && !basicMovement.attacking && !PauseController.isPaused){
             shoot();
         }
     }
