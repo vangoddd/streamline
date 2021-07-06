@@ -122,7 +122,7 @@ public class BossAi : MonoBehaviour
 
     //******** Ranged *********
     public void rangedAttack(){
-        Vector3 dir = (target.position - transform.position).normalized;
+        Vector2 dir = ((Vector2)target.position - (Vector2)transform.position).normalized;
 
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
         projectile.GetComponent<Rigidbody2D>().AddForce(dir * projectileSpeed);

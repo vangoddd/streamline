@@ -16,7 +16,9 @@ public class GuardAI : MonoBehaviour
     public bool drawGizmo = false;
 
     public float attackCooldown = 3.5f;
+    [SerializeField] float shootCooldown = 3.5f;
     private float attackTimer = 0f;
+    private float shootTimer = 0f;
 
     public GameObject projectilePrefab;
     public float projectileSpeed = 200;
@@ -91,11 +93,21 @@ public class GuardAI : MonoBehaviour
                     attackTimer = attackCooldown;
                     enemyScript.setIsAttacking(1);
                     animator.SetTrigger("melee");
-                }else{
-                    attackTimer = attackCooldown;
-                    enemyScript.setIsAttacking(1);
-                    animator.SetTrigger("ranged");
                 }
+            }
+        }
+
+        if (shootTimer > 0)
+        {
+            shootTimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (!enemyScript.isStunned())
+            {
+                shootTimer = shootCooldown;
+                enemyScript.setIsAttacking(1);
+                animator.SetTrigger("ranged");
             }
         }
     }
@@ -162,7 +174,7 @@ public class GuardAI : MonoBehaviour
     }
 
     public void ranged(){
-        Vector3 dir = (target.position - transform.position).normalized;
+        Vector2 dir = ((Vector2)target.position - (Vector2)transform.position).normalized;
 
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
         projectile.GetComponent<EnemyProjectile>().setDamage(projectileDmg);
