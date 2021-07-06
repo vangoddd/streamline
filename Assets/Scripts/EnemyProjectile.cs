@@ -7,6 +7,10 @@ public class EnemyProjectile : MonoBehaviour
     public int damage = 30;
     public GameObject hitFx;
 
+    public void Start(){
+        AudioManager.playSound("enemy_shoot");
+    }
+
     public void setDamage(int dmg){
         damage = dmg;
     }
@@ -19,9 +23,10 @@ public class EnemyProjectile : MonoBehaviour
             PlayerHealthScript p = col.gameObject.GetComponentInParent<PlayerHealthScript>();
             p.hurt(damage);
             Instantiate(hitFx, transform.position, Quaternion.identity);
+            AudioManager.playSound("enemy_shoothit");
+
         }else if(col.gameObject.layer == 7){
             Instantiate(hitFx, transform.position, Quaternion.identity);
-            
         }else{
             return;
         }

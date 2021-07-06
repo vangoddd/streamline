@@ -93,6 +93,8 @@ public class GuardAI : MonoBehaviour
                     attackTimer = attackCooldown;
                     enemyScript.setIsAttacking(1);
                     animator.SetTrigger("melee");
+                    AudioManager.playSound("guard_whip");
+
                 }
             }
         }

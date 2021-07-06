@@ -65,6 +65,9 @@ public class FlyAi : MonoBehaviour
                 attackTimer = attackCooldown;
                 enemyScript.setIsAttacking(1);
                 animator.SetTrigger("attack");
+
+                AudioManager.playSound("bird_attack");
+
             }
         }
     }

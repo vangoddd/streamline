@@ -96,6 +96,11 @@ public class BossAi : MonoBehaviour
                     enemyScript.setIsAttacking(1);
                     if(Vector2.Distance(transform.position, target.position) <= (atkRange) && !enemyScript.isStunned()){
                         animator.SetTrigger("melee");
+                        if(attackCounter % 2 == 0){
+                            AudioManager.playSound("brute_punch");
+                        }else{
+                            AudioManager.playSound("brute_punch2");
+                        }
                     }else{
                         animator.SetTrigger("shoot");
                     }
@@ -117,6 +122,8 @@ public class BossAi : MonoBehaviour
         Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(transform.position, atkRange, playerMask);
         if(hitPlayer.Length > 0){      
             hitPlayer[0].gameObject.GetComponentInParent<PlayerHealthScript>().hurt(atkDmg);
+
+            AudioManager.playSound("brute_punchhit");
         }
     }
 
@@ -134,6 +141,9 @@ public class BossAi : MonoBehaviour
     public void specialAttack(){
         spcAtkCount = 10;
         InvokeRepeating("spawnAttack", 0, 0.1f);
+
+        AudioManager.playSound("brute_slam");
+
     }
 
     private void spawnAttack(){
@@ -146,6 +156,9 @@ public class BossAi : MonoBehaviour
         }
         Vector3 spawnPosition = new Vector3(spawnPoint.position.x + offset, spawnPoint.position.y,  spawnPoint.position.z);
         Instantiate(specialAtkFx, spawnPosition, Quaternion.identity);
+
+        AudioManager.playSound("brute_shockwave");
+
         if (--spcAtkCount == 0) CancelInvoke("spawnAttack");
     }
 

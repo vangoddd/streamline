@@ -37,6 +37,15 @@ public class EnemyScript : MonoBehaviour
     public int health = 100;
     public EnemyType enemyType;
 
+    public enum DeathSound{
+        death1,
+        death2,
+        deathbig1,
+        deathbig2,
+    }
+
+    public DeathSound deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +106,19 @@ public class EnemyScript : MonoBehaviour
         }
 
         Instantiate(dieFx, transform.position, Quaternion.identity);
+        
+        if(deathSound == DeathSound.death1){
+            AudioManager.playSound("enemy_death1");
+        }else if(deathSound == DeathSound.death2){
+            AudioManager.playSound("enemy_death2");
+        }else if(deathSound == DeathSound.deathbig1){
+            AudioManager.playSound("enemy_deathbig1");
+        }else if(deathSound == DeathSound.deathbig2){
+            AudioManager.playSound("enemy_deathbig2");
+        }else{
+            AudioManager.playSound("enemy_death1");
+        }
+
         Destroy(gameObject);
     }
 

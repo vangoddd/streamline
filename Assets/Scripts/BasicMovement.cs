@@ -46,6 +46,8 @@ public class BasicMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && !attacking){
             jump = true;
             animator.SetBool("isJumping", true);
+
+            
         }
         
     }

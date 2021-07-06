@@ -79,6 +79,8 @@ public class GroundAI : MonoBehaviour
                 attackTimer = attackCooldown;
                 enemyScript.setIsAttacking(1);
                 animator.SetTrigger("attack");
+
+            AudioManager.playSound("bug_attack");
             }
         }
     }

@@ -46,6 +46,7 @@ public class PlayerHealthScript : MonoBehaviour
         //Handle healing
         if(Input.GetKeyDown(KeyCode.E)){
             if(potCount > 0){
+                AudioManager.playSound("player_heal");
                 potCount--;
                 health = (int) Mathf.Min((float)health + (float) healAmt, (float) maxHealth);
 
@@ -75,6 +76,8 @@ public class PlayerHealthScript : MonoBehaviour
         CameraShake.Instance.shakeCamera(4f, 0.2f);
         immuneTimer = hitImmunityTime;
         health -= amt;
+
+        AudioManager.playSound("player_hurt_small");
         if(health <= 0){
             die();
         }
@@ -84,6 +87,8 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void die(){
         Debug.Log("player died");
+        AudioManager.playSound("player_death");
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -94,6 +99,8 @@ public class PlayerHealthScript : MonoBehaviour
     public void addPotion(){
         if(potCount<3){
             potCount++;
+
+            AudioManager.playSound("player_pickup");
         }
         
     }

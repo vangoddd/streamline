@@ -18,13 +18,15 @@ public class ProjectileScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col){
-        if(col.gameObject.CompareTag("Player") || col.gameObject.layer == 10){
+        if(col.gameObject.CompareTag("Player") || col.gameObject.layer == 10 || col.gameObject.layer == 11){
             return;
         }
         if (col.gameObject.CompareTag("enemy")){
             EnemyScript e = col.gameObject.GetComponent<EnemyScript>();
             e.hurt(damage, true, 0.5f);
+            AudioManager.playSound("player_shoothit");
         }else{
+            AudioManager.playSound("player_shootmiss");
             Instantiate(hitFx, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);

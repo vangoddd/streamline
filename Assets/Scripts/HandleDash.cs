@@ -62,6 +62,8 @@ public class HandleDash : MonoBehaviour
                 rb.velocity = (new Vector2(-25f, rb.velocity.y));
             }
         }
+
+        AudioManager.playSound("player_dash");
     }
 
     public bool isCooldown(){

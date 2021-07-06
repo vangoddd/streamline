@@ -57,6 +57,7 @@ public class handleAttack : MonoBehaviour
 
             //play the correct attack animation
             if(combo == 0){
+                AudioManager.playSound("player_slash");
                 basicMovement.attacking = true;
                 animator.SetTrigger("Attack");
                 rb.velocity = new Vector2(0f, rb.velocity.y);
@@ -68,6 +69,7 @@ public class handleAttack : MonoBehaviour
                     (Input.GetAxisRaw("Horizontal") < -0.01f && controller.isFacingRight())){
                         controller.Flip();
                     }
+                    
                     animator.SetTrigger("Combo");
                     if(controller.isFacingRight()){
                         rb.AddForce(new Vector2(50f, 100f));
@@ -75,6 +77,23 @@ public class handleAttack : MonoBehaviour
                         rb.AddForce(new Vector2(-50f, 100f));
                     }
                     applyDamage(combo);
+
+                    switch(combo){
+                        case 1:
+                            AudioManager.playSound("player_slash2");
+                            break;
+                        case 2:
+                            AudioManager.playSound("player_slash3");
+                            break;
+                        case 3:
+                            AudioManager.playSound("player_slash2");
+                            break;
+                        case 4:
+                            AudioManager.playSound("player_slash3");
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             if(combo > 4){
@@ -134,6 +153,15 @@ public class handleAttack : MonoBehaviour
                         enemyRb.AddForce(new Vector2(-20f, 10f));
                     }
                 }
+
+                if(combo % 3 == 0){
+                    AudioManager.playSound("player_slashhit");
+                }else if(combo % 3 == 1){
+                    AudioManager.playSound("player_slashhit2");
+                }else{
+                    AudioManager.playSound("player_slashhit3");
+                }
+                
             }
         }
     }
@@ -163,6 +191,8 @@ public class handleAttack : MonoBehaviour
     public void launchProjectile(){
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, rb.position, transform.rotation);
         projectile.GetComponent<Rigidbody2D>().AddForce(shootDir * shootForce);
+
+        AudioManager.playSound("player_shoot");
     }
 
     public void setCanCombo(int canCombo){
