@@ -9,6 +9,7 @@ public class BlockRoom : MonoBehaviour
     void Update(){
         if(gameObject.transform.childCount == 0){
             barricade.SetActive(false);
+            AudioManager.stopBossMusic();
         }
     }
 
@@ -19,4 +20,6 @@ public class BlockRoom : MonoBehaviour
             barricade.SetActive(false);
         }
     }
+
+
 }

@@ -10,6 +10,9 @@ public static class AudioManager
     private static GameObject BGM;
     private static AudioSource bgmSource;
 
+    private static GameObject BossMusic;
+    private static AudioSource bossSource;
+
     public static void playSound(string playSound){
         if(oneShotGameObject == null){
             oneShotGameObject = new GameObject("OneshotSound");
@@ -38,6 +41,26 @@ public static class AudioManager
         bgmSource.clip = (AudioClip) ResourceManager.Instance.bgm[bgMusic];
         bgmSource.loop = true;
         bgmSource.Play();
+
+    }
+
+    public static void playBossMusic(int bgMusic){
+        
+        BossMusic = new GameObject("BossMusic");
+        bossSource = BossMusic.AddComponent<AudioSource>();
+        bossSource.outputAudioMixerGroup = ResourceManager.Instance.music;
+        BossMusic.AddComponent<DontDestroy>();
+        bossSource.clip = (AudioClip) ResourceManager.Instance.bgm[bgMusic];
+        bossSource.loop = true;
+        bossSource.Play();
+        bgmSource.volume = 0f;
+    }
+
+    public static void stopBossMusic(){
+        if(BossMusic != null){
+            Object.Destroy(BossMusic);
+            bgmSource.volume = 1f;
+        }
     }
 
     // **********************************************************************************************//
