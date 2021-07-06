@@ -43,12 +43,12 @@ public class PauseController : MonoBehaviour
     }
 
     public void onRestart(){
-        Time.timeScale = 1f;
+        Resume();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void onExit(){
-        Time.timeScale = 1f;
+        Resume();
         Loader.Load(Loader.Scene.Menu);
     }
 }

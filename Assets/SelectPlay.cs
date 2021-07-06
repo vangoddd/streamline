@@ -12,7 +12,7 @@ public class SelectPlay : MonoBehaviour
     }
 
     public void LoadGame(){
-        Loader.Load(Loader.Scene.LevelSelect);
+        Loader.LoadNoLoading(Loader.Scene.LevelSelect);
     }
 
 }

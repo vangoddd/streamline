@@ -6,6 +6,6 @@ public class OptionButton : MonoBehaviour
 {
     public void loadOption(){
         AudioManager.playSound("ui_select");
-        Loader.Load(Loader.Scene.Option);
+        Loader.LoadNoLoading(Loader.Scene.Option);
     }
 }
