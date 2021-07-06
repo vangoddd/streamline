@@ -235,6 +235,13 @@ MonoBehaviour:
   healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
   health: 100
   enemyType: 0
+  aggroEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathSound: 0
 --- !u!114 &1370738689652751027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,9 +257,10 @@ MonoBehaviour:
   speed: 200
   nextWaypointDistance: 0.5
   atkRange: 0.5
-  atkDmg: 30
+  atkDmg: 20
   drawGizmo: 1
   attackCooldown: 7
+  shootCooldown: 3.5
   projectilePrefab: {fileID: 2530782150264911711, guid: 8608126bc18a82144a1fd1ba55d1d05f, type: 3}
   projectileSpeed: 75
   projectileDmg: 20

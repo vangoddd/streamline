@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFx: {fileID: 8113027971453377695, guid: d0f09cecd68ebed42b15160142786393, type: 3}
   dieFx: {fileID: 8113027971453377695, guid: cd5fb2d13a1255b46bedc0a03ff4ca2d, type: 3}
+  isBoss: 0
   finishedAggro: 0
   stunResist: 0
   cannotBeStunned: 0
@@ -193,6 +194,13 @@ MonoBehaviour:
   healPot: {fileID: 7929516878526102304, guid: aa96b592000719344827aba3150eb95e, type: 3}
   health: 100
   enemyType: 1
+  aggroEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathSound: 0
 --- !u!114 &9162120901732963328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,11 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611daea6abc787843a80ecb682f938b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 200
   nextWaypointDistance: 0.5
   atkRange: 1
-  atkDmg: 50
+  atkDmg: 25
   playerMask:
     serializedVersion: 2
     m_Bits: 64
