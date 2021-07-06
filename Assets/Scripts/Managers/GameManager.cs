@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 
    public int LevelCompleted {get; set;}
 
+   public float sfxVolume {get; set;}
+   public float musicVolume {get; set;}
+   public float masterVolume {get; set;}
+
    void Awake(){
        DontDestroyOnLoad(gameObject);
        _instance = this;
@@ -26,5 +30,9 @@ public class GameManager : MonoBehaviour
 
    void Start(){
        LevelCompleted = 0;
+
+       sfxVolume = 0f;
+       musicVolume = 0f;
+       masterVolume = 0f;
    }
 }

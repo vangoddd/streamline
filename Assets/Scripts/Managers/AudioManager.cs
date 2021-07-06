@@ -11,9 +11,17 @@ public static class AudioManager
         if(oneShotGameObject == null){
             oneShotGameObject = new GameObject("OneshotSound");
             audioSource = oneShotGameObject.AddComponent<AudioSource>();
-            audioSource.volume = 0.1f;
+            //audioSource.volume = 0.1f;
+            Debug.Log(ResourceManager.Instance.SFX);
+            audioSource.outputAudioMixerGroup = ResourceManager.Instance.SFX;
             oneShotGameObject.AddComponent<DontDestroy>();
         }
         audioSource.PlayOneShot(ResourceManager.Instance.sound[playSound]);
+    }
+
+    public static void changeSFXVol(){
+        //Debug.Log(GameManager.Instance.sfxVolume);
+        //Debug.Log(audioSource);
+        audioSource.outputAudioMixerGroup.audioMixer.SetFloat("sfx", GameManager.Instance.sfxVolume);
     }
 }

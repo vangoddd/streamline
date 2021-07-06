@@ -20,4 +20,8 @@ public class ButtonSelect : MonoBehaviour, IPointerEnterHandler, ISelectHandler
         AudioManager.playSound("ui_buttons");
         arrow.transform.position = transform.position;
     }
+
+    public void playClickSound(){
+        AudioManager.playSound("ui_select");
+    }
 }
